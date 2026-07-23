@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+html,
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Consistent number rendering site-wide (nav, cards, stats, footer, etc).
+   Forces every digit onto the same tabular/lining numeral style so counts
+   like "7,800+" or "132 Job Fairs" never look like a different, mismatched
+   font next to the surrounding text. */
+* {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+.marquee {
+  display: flex;
+  width: fit-content;
+  animation: marquee 15s linear infinite;
+}
+
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  padding-right: 2rem; /* small spacing between copies */
+}
+
+.marquee-group span {
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
