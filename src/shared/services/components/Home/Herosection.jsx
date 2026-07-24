@@ -84,21 +84,15 @@ export default function HeroSection() {
         }
 
         .h-bgw-mobile{display:none}
+        .h-bgw-mobile-svg{width:100%;height:auto;display:block}
 
         @media(max-width:760px){
           .h-hero{padding:48px 24px}
           .h-bgw-wrap{display:none}
           .h-bgw-mobile{
             display:block;
-            font-family:'Raleway',sans-serif;
-            font-weight:900;
-            text-transform:uppercase;
-            letter-spacing:-1px;
-            font-size:clamp(28px,9vw,44px);
-            color:rgba(0,0,0,.05);
-            text-align:center;
-            line-height:1;
-            margin:10px 0 22px;
+            width:82vw;
+            margin:0 auto 24px;
             user-select:none;
             pointer-events:none;
           }
@@ -142,12 +136,33 @@ export default function HeroSection() {
 
           <div className="h-ey ha1"></div>
           <div className="h-hl ha2">
-            <span className="h-hl-row"><span className="h-sans">We make</span><span className="h-serif"> employment</span></span>
-            <span className="h-hl-row"><span className="h-sans">real for</span><span className="h-serif-gr"> every Indian.</span></span>
+            <span className="h-hl-row"><span className="h-sans">One fair.</span></span>
+            <span className="h-hl-row"><span className="h-sans">Thousands of</span><span className="h-serif-gr"> first jobs.</span></span>
           </div>
           <div className="h-div ha3"><div className="h-dline"/><div className="h-dline"/></div>
-          <span className="h-bgw-mobile">Skill Yuva Bharat</span>
-          <p className="h-sub ha4"><strong>Skill Yuva Bharat</strong> organises large-scale job fairs across India, connecting unemployed youth directly with employers. Zero cost. Zero barriers. Just careers.</p>
+          <div className="h-bgw-mobile">
+            <svg className="h-bgw-mobile-svg" viewBox="0 0 800 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <defs>
+                <linearGradient id="hFlagGradM" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#FF9933"/>
+                  <stop offset="33%" stopColor="#FF9933"/>
+                  <stop offset="33%" stopColor="#FFFFFF"/>
+                  <stop offset="66%" stopColor="#FFFFFF"/>
+                  <stop offset="66%" stopColor="#138808"/>
+                  <stop offset="100%" stopColor="#138808"/>
+                </linearGradient>
+                <filter id="hFlagWaveM" x="-20%" y="-20%" width="140%" height="140%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="4" result="hTurbM">
+                    <animate attributeName="baseFrequency" dur="9s" values="0.012 0.05;0.017 0.06;0.012 0.05" repeatCount="indefinite"/>
+                  </feTurbulence>
+                  <feDisplacementMap in="SourceGraphic" in2="hTurbM" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
+              </defs>
+              <text className="h-bgw-base" x="50%" y="65%" textAnchor="middle" fontWeight="900" letterSpacing="-3" fontSize="60" fill="rgba(0,0,0,.05)">SKILL YUVA BHARAT</text>
+              <text className="h-bgw-sweep" x="50%" y="65%" textAnchor="middle" fontWeight="900" letterSpacing="-3" fontSize="60" fill="url(#hFlagGradM)" opacity="0.28" filter="url(#hFlagWaveM)">SKILL YUVA BHARAT</text>
+            </svg>
+          </div>
+          <p className="h-sub ha4"><strong>Skill Yuva Bharat</strong> organises India's largest job fairs, where first-generation earners meet real employers, face-to-face. Zero cost. Zero middlemen.</p>
           <div className="h-ctas ha5">
             <Link to="/about" className="h-ca">Who we are <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
             <Link to="/jobfair" className="h-cb">Our job fairs</Link>
