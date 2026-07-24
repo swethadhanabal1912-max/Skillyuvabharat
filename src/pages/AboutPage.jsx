@@ -345,6 +345,7 @@ export default function AboutPage() {
           width: 460px;
           height: 460px;
           margin: 0 auto 40px;
+          --orbit-r: 200px;
         }
         .pt-hub {
           position: absolute;
@@ -354,12 +355,13 @@ export default function AboutPage() {
           border-radius: 50%;
           background: #111;
           color: #fff;
-          display: flex; flex-direction: column; align-items: center; justify-content: center;
-          gap: 3px;
+          display: flex;
+          flex-direction: column;
+          align-items: center; justify-content: center;
           text-align: center;
           font-weight: 900;
           font-size: 15px;
-          line-height: 1.2;
+          line-height: 1.3;
           z-index: 3;
           box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
@@ -430,7 +432,27 @@ export default function AboutPage() {
           .eg-card { width: 150px; height: 210px; }
           .fs-body { grid-template-columns: 1fr; padding: 30px 24px 40px; }
           .fs-diagonal { display: none; }
-          .pt-orbit-wrap { transform: scale(0.68); transform-origin: center; margin: -70px auto -70px; }
+
+          .pt-wrap { overflow-x: hidden; }
+          .pt-orbit-wrap {
+            width: 300px;
+            height: 300px;
+            --orbit-r: 118px;
+          }
+          .pt-hub { width: 84px; height: 84px; margin: -42px 0 0 -42px; font-size: 11px; }
+          .pt-sat-inner { width: 66px; height: 66px; margin: -33px 0 0 -33px; font-size: 8.5px; gap: 2px; }
+          .pt-sat-inner img { width: 24px; height: 24px; }
+        }
+
+        @media (max-width: 420px) {
+          .pt-orbit-wrap {
+            width: 260px;
+            height: 260px;
+            --orbit-r: 98px;
+          }
+          .pt-hub { width: 74px; height: 74px; margin: -37px 0 0 -37px; font-size: 10px; }
+          .pt-sat-inner { width: 56px; height: 56px; margin: -28px 0 0 -28px; font-size: 7.5px; }
+          .pt-sat-inner img { width: 20px; height: 20px; }
         }
       `}</style>
 
@@ -571,7 +593,7 @@ export default function AboutPage() {
               { short: 'PWD', angle: 216, color: '#E8650A', logo: '/images/pwd.png' },
               { short: 'NCS', angle: 288, color: '#1A7A2E', logo: '/images/ncs.png' }
             ].map((s) => (
-              <div key={s.short} className="pt-sat" style={{ transform: `rotate(${s.angle}deg) translate(200px) rotate(-${s.angle}deg)` }}>
+              <div key={s.short} className="pt-sat" style={{ transform: `rotate(${s.angle}deg) translate(var(--orbit-r, 200px)) rotate(-${s.angle}deg)` }}>
                 <div className="pt-sat-inner" style={{ '--c': s.color }}>
                   <img src={s.logo} alt={s.short} />
                   <span>{s.short}</span>

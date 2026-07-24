@@ -157,6 +157,12 @@ export default function Footer() {
 
         @media (max-width: 900px) {
           .ft-nav-row { flex-direction: column; gap: 30px; }
+          .ft-nav-links {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px 28px;
+          }
+          .ft-nav-links a { white-space: nowrap; }
           .ft-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 500px) {
