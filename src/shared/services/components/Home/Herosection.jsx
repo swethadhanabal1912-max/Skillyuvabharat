@@ -83,9 +83,25 @@ export default function HeroSection() {
           .h-bgw-sweep{display:none}
         }
 
+        .h-bgw-mobile{display:none}
+
         @media(max-width:760px){
           .h-hero{padding:48px 24px}
-          .h-bgw-wrap{top:18px;left:50%;transform:translate(-50%,0);width:92vw}
+          .h-bgw-wrap{display:none}
+          .h-bgw-mobile{
+            display:block;
+            font-family:'Raleway',sans-serif;
+            font-weight:900;
+            text-transform:uppercase;
+            letter-spacing:-1px;
+            font-size:clamp(28px,9vw,44px);
+            color:rgba(0,0,0,.05);
+            text-align:center;
+            line-height:1;
+            margin:10px 0 22px;
+            user-select:none;
+            pointer-events:none;
+          }
           .h-stats{width:100%;border-radius:14px}
           .h-st{flex:1 1 33%;padding:14px 10px}
           .h-sv{font-size:19px}
@@ -130,6 +146,7 @@ export default function HeroSection() {
             <span className="h-hl-row"><span className="h-sans">real for</span><span className="h-serif-gr"> every Indian.</span></span>
           </div>
           <div className="h-div ha3"><div className="h-dline"/><div className="h-dline"/></div>
+          <span className="h-bgw-mobile">Skill Yuva Bharat</span>
           <p className="h-sub ha4"><strong>Skill Yuva Bharat</strong> organises large-scale job fairs across India, connecting unemployed youth directly with employers. Zero cost. Zero barriers. Just careers.</p>
           <div className="h-ctas ha5">
             <Link to="/about" className="h-ca">Who we are <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
