@@ -169,7 +169,8 @@ export default function AboutPage() {
           text-align: center;
           letter-spacing: -0.5px;
         }
-        .ap-hero-circle-inner span .accent { color: #E8650A; }
+        .ap-hero-circle-inner span .accent-orange { color: #E8650A; }
+        .ap-hero-circle-inner span .accent-green { color: #1A7A2E; }
 
         /* --- 2. Founder Section (editorial magazine style) --- */
         .fs-wrap {
@@ -353,10 +354,12 @@ export default function AboutPage() {
           border-radius: 50%;
           background: #111;
           color: #fff;
-          display: flex; align-items: center; justify-content: center;
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+          gap: 3px;
           text-align: center;
           font-weight: 900;
           font-size: 15px;
+          line-height: 1.2;
           z-index: 3;
           box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
@@ -445,7 +448,7 @@ export default function AboutPage() {
           <div className="ap-hero-box ap-hero-box-2"></div>
           <div className="ap-hero-circle-outer">
             <div className="ap-hero-circle-inner">
-              <span>SKILL<br/><span className="accent">YUVA</span><br/>BHARAT</span>
+              <span><span className="accent-orange">SKILL</span><br/>YUVA<br/><span className="accent-green">BHARAT</span></span>
             </div>
           </div>
         </div>
@@ -555,7 +558,11 @@ export default function AboutPage() {
 
         <div className="pt-orbit-wrap">
           <div className="pt-ring"></div>
-          <div className="pt-hub">SKILL<br/>YUVA<br/>BHARAT</div>
+          <div className="pt-hub">
+            <span style={{ color: "#E8650A" }}>SKILL</span>
+            <span>YUVA</span>
+            <span style={{ color: "#3FCB6B" }}>BHARAT</span>
+          </div>
           <div className="pt-orbit">
             {[
               { short: 'NSDC', angle: 0, color: '#E8650A', logo: '/images/nsdc.png' },

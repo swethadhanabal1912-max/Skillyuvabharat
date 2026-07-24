@@ -1,253 +1,600 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Target, Users2, Rocket, Heart, ShieldCheck, Globe } from 'lucide-react';
 
-const JOURNEY = [
+const PILLARS = [
   {
-    year: "2019",
-    title: "The idea takes shape",
-    text: "Founded on a simple observation: India's youth weren't short of skill, they were short of a door in.",
-    tag: "Founded",
-    stat: "Day 1",
-    statLabel: "The beginning",
-    icon: "bulb"
+    icon: <Target size={24} />,
+    title: "Radical Accessibility",
+    text: "We believe a job interview shouldn't cost a day's wage. Our fairs are 100% free for every candidate, forever.",
+    color: "#E8650A"
   },
   {
-    year: "2020",
-    title: "First fair, first offers",
-    text: "Our first job fair ran out of a single hall in Ahmedabad. 40 companies, 900 youth, offers signed on the spot.",
-    tag: "Ahmedabad",
-    stat: "900",
-    statLabel: "Youth attended",
-    icon: "building"
+    icon: <ShieldCheck size={24} />,
+    title: "Verified Employers",
+    text: "No agents, no middlemen. We only partner with direct employers to ensure the safety and dignity of our youth.",
+    color: "#1A7A2E"
   },
   {
-    year: "2021",
-    title: "The caravan starts moving",
-    text: "One city became ten states. We built a travelling fair model with local partners and a fast setup playbook.",
-    tag: "10 states",
-    stat: "10",
-    statLabel: "States reached",
-    icon: "pin"
-  },
-  {
-    year: "2023",
-    title: "100,000 youth placed",
-    text: "We crossed our first major milestone as manufacturing, retail, logistics and healthcare employers kept returning.",
-    tag: "Milestone",
-    stat: "100K+",
-    statLabel: "Youth placed",
-    icon: "users"
-  },
-  {
-    year: "2025",
-    title: "28 states, 800+ companies",
-    text: "What started in one hall now runs nationwide, backed by partnerships with NSDC, CII and ASDC.",
-    tag: "Nationwide",
-    stat: "800+",
-    statLabel: "Companies onboarded",
-    icon: "handshake"
-  },
-  {
-    year: "2026",
-    title: "Still on the road",
-    text: "Fairs scheduled in every region this year. The goal hasn't changed: zero cost, zero barriers, just careers.",
-    tag: "Ongoing",
-    stat: "28",
-    statLabel: "States, and counting",
-    icon: "flag"
-  },
+    icon: <Globe size={24} />,
+    title: "Pan-India Reach",
+    text: "From Tier-1 capitals to Tier-4 rural clusters, we bring the boardroom to the doorstep of Bharat.",
+    color: "#111"
+  }
 ];
 
-function StopIcon({ type }) {
-  const common = {
-    width: 22,
-    height: 22,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.8,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-  };
+const EVENT_IMAGES = [
+  '/images/image1.jpeg', '/images/image2.jpeg', '/images/image3.jpeg', '/images/image4.jpeg', '/images/image5.jpeg',
+  '/images/image6.jpeg', '/images/image7.jpeg', '/images/image8.jpeg', '/images/image9.jpeg', '/images/image10.jpeg',
+  '/images/image11.jpeg', '/images/image12.jpeg', '/images/image13.jpeg', '/images/image14.jpeg', '/images/image15.jpeg'
+];
 
-  switch (type) {
-    case "bulb": return <svg {...common}><path d="M9 18h6m-3 3h0M12 3a6 6 0 0 0-3.4 10.9c.5.4.9 1.1.9 1.8V16h5v-.3c0-.7.3-1.4.9-1.8A6 6 0 0 0 12 3Z" /></svg>;
-    case "building": return <svg {...common}><rect x="5" y="3" width="10" height="18" rx="1" /><path d="M15 21h4v-9l-4-3M8 7h1M11 7h1M8 11h1M11 11h1" /></svg>;
-    case "pin": return <svg {...common}><path d="M12 21s7-6.6 7-11.5A7 7 0 0 0 5 9.5C5 14.4 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.3" /></svg>;
-    case "users": return <svg {...common}><circle cx="9" cy="8" r="3" /><path d="M3.5 20a5.5 5.5 0 0 1 11 0" /><circle cx="17" cy="8.5" r="2.4" /><path d="M15.5 13.2A5.5 5.5 0 0 1 20.8 20" /></svg>;
-    case "handshake": return <svg {...common}><path d="M2.5 12.5 6 9l3 2.5m13 1L18 9l-3 2.5" /><path d="M9 11.5l2.3 2.1a1.4 1.4 0 0 0 2-2" /></svg>;
-    case "flag": return <svg {...common}><path d="M5 21V4h13l-3 4 3 4H5" /></svg>;
-    default: return null;
+const PARTNERS = [
+  {
+    short: "NSDC",
+    name: "National Skill Development Corporation",
+    text: "The public-private body under the Ministry of Skill Development & Entrepreneurship that drives India's skilling ecosystem nationwide."
+  },
+  {
+    short: "CII",
+    name: "Confederation of Indian Industry",
+    text: "India's premier industry body, driving the national skills agenda since 1987 and instrumental in setting up NSDC itself."
+  },
+  {
+    short: "ASDC",
+    name: "Automotive Skills Development Council",
+    text: "The sector skill council for the automotive industry, backed by NSDC and India's leading auto industry associations."
+  },
+  {
+    short: "PWD",
+    name: "Persons with Disabilities Inclusion",
+    text: "Supporting inclusive hiring and skilling initiatives that create equal opportunities for persons with disabilities."
+  },
+  {
+    short: "NCS",
+    name: "National Career Service",
+    text: "The Ministry of Labour & Employment's nationwide portal connecting job seekers directly with employers."
   }
-}
+];
 
-export default function AboutUs() {
+export default function AboutPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [start, setStart] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStart((prev) => (prev + 1) % EVENT_IMAGES.length);
+    }, 2200);
+    return () => clearInterval(timer);
+  }, []);
+
+  const visible = [
+    EVENT_IMAGES[start % EVENT_IMAGES.length],
+    EVENT_IMAGES[(start + 1) % EVENT_IMAGES.length],
+    EVENT_IMAGES[(start + 2) % EVENT_IMAGES.length]
+  ];
+
   return (
-    <>
+    <div className="ap-wrap">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800;900&family=Lora:ital,wght@0,600;1,600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800;900&family=Lora:ital,wght@0,600;1,500&display=swap');
 
-        .a-wrap { font-family: 'Raleway', sans-serif; background: #F8F4EF; width: 100%; position: relative; overflow: hidden; }
-
-        /* ---------- Who we are Section ---------- */
-        .a-mission-bg { width: 100%; background: #EADFC9; position: relative; z-index: 1; }
-        .a-mission { max-width: 1120px; margin: 0 auto; padding: 100px 52px 80px; position: relative; }
+        .ap-wrap { font-family: 'Raleway', sans-serif; background: #F8F4EF; color: #111; overflow-x: hidden; }
         
-        .a-eyebrow { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 32px; }
-        .a-eyebrow-line { height: 1px; width: 40px; background: rgba(0,0,0,.15); }
-        .a-eyebrow-txt { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(0,0,0,.4); }
-
-        .a-mission-grid { display: grid; grid-template-columns: 0.85fr 1fr; gap: 48px; align-items: center; text-align: left; }
-        .a-headline { font-size: clamp(28px, 3.6vw, 42px); font-weight: 900; letter-spacing: -1px; line-height: 1.2; color: #111; }
-        .a-headline em { font-family: 'Lora', serif; font-style: italic; color: #E8650A; font-weight: 600; }
+        /* --- 1. Editorial Hero --- */
+        .ap-hero {
+          padding: 120px 24px 80px;
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 60px;
+          align-items: center;
+        }
+        .ap-hero-content { position: relative; }
+        .ap-hero-tag {
+          font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em;
+          color: #1A7A2E; margin-bottom: 20px; display: block;
+        }
+        .ap-hero-title {
+          font-size: clamp(40px, 6vw, 72px); font-weight: 900; line-height: 1; letter-spacing: -2px; margin-bottom: 30px;
+        }
+        .ap-hero-title em { font-family: 'Lora', serif; font-style: italic; color: #E8650A; font-weight: 500; }
         
-        .a-body { font-size: 16px; font-weight: 400; line-height: 1.8; color: rgba(0,0,0,.7); }
-        .a-body strong { font-weight: 700; color: #111; }
+        .ap-hero-quote {
+          font-family: 'Lora', serif; font-size: 20px; font-style: italic; color: #666;
+          border-left: 3px solid #EADFC9; padding-left: 24px; line-height: 1.6;
+        }
 
-        /* Decorative Elements (Glows & Rings) */
-        .a-glow { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
-        .a-glow-1 { width: 380px; height: 380px; top: 20px; right: 20px; background: radial-gradient(circle,rgba(255,153,51,.15),transparent 70%); }
-        .a-glow-2 { width: 400px; height: 400px; top: 500px; left: -100px; background: radial-gradient(circle,rgba(19,136,8,.12),transparent 70%); }
+        /* --- Hero Visual: two overlapping boxes + rotated circle badge --- */
+        .ap-hero-visual {
+          position: relative;
+          height: 420px;
+        }
+        .ap-hero-box {
+          position: absolute;
+          border-radius: 28px;
+        }
+        .ap-hero-box-1 {
+          left: 0;
+          top: 30px;
+          width: 58%;
+          height: 300px;
+          background: #EADFC9;
+        }
+        .ap-hero-box-2 {
+          right: 0;
+          top: 110px;
+          width: 54%;
+          height: 300px;
+          background: #1A7A2E;
+        }
+        .ap-hero-circle-outer {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin-left: -95px;
+          margin-top: -95px;
+          width: 190px;
+          height: 190px;
+          border-radius: 50%;
+          background: #F8F4EF;
+          border: 4px dashed #111;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+          z-index: 2;
+          animation: ap-circle-spin 6s linear infinite;
+        }
+        .ap-hero-circle-inner {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          animation: ap-circle-spin-reverse 6s linear infinite;
+        }
+        @keyframes ap-circle-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes ap-circle-spin-reverse {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(-360deg); }
+        }
+        .ap-hero-circle-inner span {
+          font-weight: 900;
+          font-size: 19px;
+          line-height: 1.35;
+          text-align: center;
+          letter-spacing: -0.5px;
+        }
+        .ap-hero-circle-inner span .accent-orange { color: #E8650A; }
+        .ap-hero-circle-inner span .accent-green { color: #1A7A2E; }
+
+        /* --- 2. Founder Section (editorial magazine style) --- */
+        .fs-wrap {
+          background: #F8F4EF;
+          padding: 100px 24px;
+        }
+        .fs-card {
+          max-width: 1100px;
+          margin: 0 auto;
+          position: relative;
+          background: #fff;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+        }
+        .fs-diagonal {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 45%;
+          height: 100%;
+          background: #EADFC9;
+          clip-path: polygon(35% 0, 100% 0, 100% 100%, 0% 100%);
+          z-index: 0;
+        }
+        .fs-body {
+          position: relative;
+          z-index: 2;
+          display: grid;
+          grid-template-columns: 0.85fr 1.15fr;
+          gap: 40px;
+          align-items: center;
+          padding: 40px 48px 60px;
+        }
+        .fs-photo {
+          width: 100%;
+          aspect-ratio: 3/4;
+          border-radius: 12px;
+          overflow: hidden;
+          background: #ddd;
+        }
+        .fs-photo img {
+          width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .fs-tag {
+          font-size: 13px; font-weight: 800; color: #1A7A2E; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; display: block;
+        }
+        .fs-name {
+          font-family: 'Lora', serif;
+          font-size: clamp(28px, 3vw, 38px);
+          font-weight: 600;
+          color: #111;
+          margin-bottom: 10px;
+        }
+        .fs-date {
+          font-size: 12px; color: #999; margin-bottom: 24px;
+        }
+        .fs-para {
+          font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 22px;
+        }
+        .fs-quote {
+          font-family: 'Lora', serif;
+          font-style: italic;
+          font-size: 20px;
+          line-height: 1.6;
+          color: #E8650A;
+          text-align: center;
+          margin: 28px 0;
+          padding: 0 20px;
+        }
+
+        /* --- 3. Event Gallery Section (fanned photo stack) --- */
+        .eg-wrap {
+          background: #F8F4EF;
+          padding: 100px 24px;
+        }
+        .eg-grid {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 0.9fr 1.1fr;
+          gap: 60px;
+          align-items: center;
+        }
+        .eg-tag {
+          font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em;
+          color: #1A7A2E; margin-bottom: 20px; display: block;
+        }
+        .eg-title {
+          font-size: clamp(32px, 4vw, 48px); font-weight: 900; line-height: 1.1;
+          letter-spacing: -1px; margin-bottom: 24px; color: #111;
+        }
+        .eg-title em { font-family: 'Lora', serif; font-style: italic; color: #E8650A; font-weight: 500; }
+        .eg-text {
+          font-size: 16px; line-height: 1.8; color: #444; max-width: 420px;
+        }
+        .eg-stack {
+          position: relative;
+          width: 100%;
+          height: 520px;
+        }
+        .eg-card {
+          position: absolute;
+          top: 40px;
+          width: 300px;
+          height: 420px;
+          border-radius: 22px;
+          overflow: hidden;
+          box-shadow: 0 24px 50px rgba(0,0,0,0.25);
+          border: 6px solid #fff;
+          animation: eg-fade-in 0.6s ease;
+        }
+        .eg-card-0 { left: 0%; transform: rotate(-10deg); z-index: 1; }
+        .eg-card-1 { left: 50%; top: 10px; transform: translateX(-50%) rotate(0deg); z-index: 2; }
+        .eg-card-2 { right: 0%; transform: rotate(10deg); z-index: 1; }
+        @keyframes eg-fade-in {
+          from { opacity: 0; transform: scale(0.92); }
+          to { opacity: 1; }
+        }
+        .eg-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        /* --- 4. The Vision Section (The "Why") --- */
+        .ap-vision { background: #fff; padding: 100px 24px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .ap-vision-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
         
-        .a-ring { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; border: 1.5px dashed rgba(0,0,0,.1); animation: a-spin 40s linear infinite; }
-        .a-ring-1 { width: 120px; height: 120px; top: 60px; left: 60px; }
-        @keyframes a-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .ap-vision-text h2 { font-size: 32px; font-weight: 900; margin-bottom: 24px; letter-spacing: -0.5px; }
+        .ap-vision-text p { font-size: 16.5px; line-height: 1.8; color: #444; margin-bottom: 20px; }
 
-        /* ---------- Roadmap Section ---------- */
-        .a-journey-section { max-width: 1000px; margin: 0 auto; padding: 80px 52px; position: relative; }
-        .a-j-head { text-align: center; margin-bottom: 60px; }
-        .a-j-title { font-size: 32px; font-weight: 900; color: #111; letter-spacing: -1px; }
-        .a-j-title em { font-family: 'Lora', serif; font-style: italic; color: #1A7A2E; font-weight: 600; }
-
-        .a-road { position: relative; }
-        .a-road-line {
-          position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
-          background: #DED6C5; transform: translateX(-50%);
+        .ap-stat-highlight {
+           background: #F8F4EF; padding: 40px; border-radius: 20px; display: flex; flex-direction: column; justify-content: center;
         }
+        .ap-stat-num { font-size: 64px; font-weight: 900; color: #1A7A2E; line-height: 1; margin-bottom: 10px; }
+        .ap-stat-label { font-size: 14px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; }
 
-        .a-stop {
-          display: grid; grid-template-columns: 1fr 60px 1fr;
-          align-items: center; margin-bottom: 50px; position: relative;
+        /* --- 5. The Pillars (Cards with Thick Left Border) --- */
+        .ap-pillars { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+        .ap-pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        
+        .ap-pillar-card {
+          background: #fff; padding: 40px 32px; border-radius: 16px;
+          border: 1px solid rgba(0,0,0,0.05); border-left: 6px solid var(--accent);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+          transition: transform 0.3s ease;
         }
+        .ap-pillar-card:hover { transform: translateY(-10px); }
+        .ap-pillar-icon { color: var(--accent); margin-bottom: 24px; }
+        .ap-pillar-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 16px; }
+        .ap-pillar-card p { font-size: 14px; color: #666; line-height: 1.6; }
 
-        .a-stop-marker {
-          grid-column: 2; display: flex; flex-direction: column;
-          align-items: center; position: relative; z-index: 2;
+        /* --- 6. The Impact Numbers --- */
+        .ap-impact { background: #111; color: #fff; padding: 80px 24px; text-align: center; }
+        .ap-impact-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .ap-impact-item h4 { font-size: 32px; font-weight: 900; margin-bottom: 5px; color: #E8650A; }
+        .ap-impact-item p { font-size: 11px; font-weight: 700; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- 7. Partners Section (orbiting satellite diagram) --- */
+        .pt-wrap { background: #F8F4EF; padding: 100px 24px; }
+        .pt-tag {
+          font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em;
+          color: #1A7A2E; margin-bottom: 16px; display: block; text-align: center;
         }
-        .a-stop-year {
-          font-family: 'Lora', serif; font-style: italic; font-weight: 700;
-          font-size: 13px; color: #111; margin-bottom: 6px; background: #F8F4EF; padding: 0 4px;
+        .pt-inner h2 {
+          font-size: 32px; font-weight: 900; margin-bottom: 60px; color: #111; text-align: center;
         }
-        .a-stop-pin {
-          width: 14px; height: 14px; border-radius: 50%; background: #fff;
-          border: 3px solid var(--accent); box-shadow: 0 0 0 4px #F8F4EF;
+        .pt-orbit-wrap {
+          position: relative;
+          width: 460px;
+          height: 460px;
+          margin: 0 auto 40px;
         }
-
-        .a-stop-card {
-          background: #fff; border-radius: 14px; padding: 20px 22px;
-          border: 1px solid rgba(0,0,0,0.06); border-left: 4px solid var(--accent);
-          box-shadow: 0 6px 20px rgba(0,0,0,0.03); position: relative;
+        .pt-hub {
+          position: absolute;
+          top: 50%; left: 50%;
+          width: 110px; height: 110px;
+          margin: -55px 0 0 -55px;
+          border-radius: 50%;
+          background: #111;
+          color: #fff;
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+          gap: 3px;
+          text-align: center;
+          font-weight: 900;
+          font-size: 15px;
+          line-height: 1.2;
+          z-index: 3;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-
-        .a-stop-left .a-stop-card { grid-column: 1; justify-self: end; text-align: right; margin-right: 20px; }
-        .a-stop-right .a-stop-card { grid-column: 3; justify-self: start; text-align: left; margin-left: 20px; }
-
-        .a-stop-icon {
-          width: 38px; height: 38px; background: var(--accent-bg); color: var(--accent);
-          border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;
+        .pt-ring {
+          position: absolute;
+          inset: 0;
+          border: 2px dashed rgba(0,0,0,0.15);
+          border-radius: 50%;
         }
+        .pt-orbit {
+          position: absolute;
+          inset: 0;
+          animation: pt-spin 30s linear infinite;
+        }
+        .pt-sat {
+          position: absolute;
+          top: 50%; left: 50%;
+          width: 0; height: 0;
+        }
+        .pt-sat-inner {
+          position: absolute;
+          width: 92px; height: 92px;
+          margin: -46px 0 0 -46px;
+          border-radius: 50%;
+          background: #fff;
+          border: 3px solid var(--c);
+          display: flex; flex-direction: column; align-items: center; justify-content: center;
+          gap: 4px;
+          font-weight: 900;
+          font-size: 11px;
+          color: var(--c);
+          animation: pt-spin-reverse 30s linear infinite;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .pt-sat-inner img {
+          width: 36px; height: 36px; object-fit: contain;
+        }
+        @keyframes pt-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes pt-spin-reverse {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(-360deg); }
+        }
+        .pt-caption {
+          text-align: center;
+          font-size: 15px;
+          color: #666;
+          max-width: 560px;
+          margin: 0 auto;
+        }
+        .pt-caption strong { color: #E8650A; }
 
-        .a-stop-tag { font-size: 9px; font-weight: 800; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 6px; letter-spacing: 0.1em;}
-        .a-stop-title { font-size: 17px; font-weight: 800; color: #111; margin-bottom: 6px; }
-        .a-stop-text { font-size: 13.5px; color: rgba(0,0,0,0.6); line-height: 1.5; }
+        /* --- 8. Closing CTA --- */
+        .ap-cta { padding: 120px 24px; text-align: center; background: #EADFC9; }
+        .ap-cta h2 { font-size: 42px; font-weight: 900; margin-bottom: 30px; letter-spacing: -1px; }
+        .ap-cta-btn { 
+          background: #111; color: #fff; padding: 18px 48px; border-radius: 99px; 
+          font-weight: 800; text-decoration: none; display: inline-block; transition: 0.2s;
+        }
+        .ap-cta-btn:hover { background: #E8650A; transform: scale(1.05); }
 
-        .a-stop-stat { display: flex; flex-direction: column; }
-        .a-stop-left .a-stop-stat { grid-column: 3; align-items: flex-start; margin-left: 20px; }
-        .a-stop-right .a-stop-stat { grid-column: 1; align-items: flex-end; text-align: right; margin-right: 20px; }
-
-        .a-stat-num { font-size: 30px; font-weight: 900; color: var(--accent); line-height: 1; }
-        .a-stat-lab { font-size: 10px; font-weight: 700; color: #999; text-transform: uppercase; margin-top: 4px; }
-
-        @media(max-width: 768px) {
-          .a-mission-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-          .a-road-line { left: 20px; transform: none; }
-          .a-stop { grid-template-columns: 40px 1fr; gap: 0; }
-          .a-stop-marker { grid-column: 1; align-items: center; }
-          .a-stop-left .a-stop-card, .a-stop-right .a-stop-card { grid-column: 2; margin: 0 0 20px 20px; text-align: left; }
-          .a-stop-stat { display: none; }
+        @media (max-width: 900px) {
+          .ap-hero, .ap-vision-grid, .ap-pillar-grid, .eg-grid { grid-template-columns: 1fr; gap: 40px; }
+          .ap-impact-grid { grid-template-columns: 1fr 1fr; }
+          .eg-stack { height: 340px; }
+          .eg-card { width: 150px; height: 210px; }
+          .fs-body { grid-template-columns: 1fr; padding: 30px 24px 40px; }
+          .fs-diagonal { display: none; }
+          .pt-orbit-wrap { transform: scale(0.68); transform-origin: center; margin: -70px auto -70px; }
         }
       `}</style>
 
-      <div className="a-wrap" id="about">
-        <div className="a-glow a-glow-1"/>
-        <div className="a-glow a-glow-2"/>
-        <div className="a-ring a-ring-1"/>
-
-        {/* --- Who We Are Section --- */}
-        <section className="a-mission-bg">
-          <div className="a-mission">
-            <div className="a-eyebrow">
-              <div className="a-eyebrow-line"/>
-              <span className="a-eyebrow-txt">Who we are</span>
-              <div className="a-eyebrow-line"/>
+      {/* 1. Header Section */}
+      <section className="ap-hero">
+        <div className="ap-hero-content">
+          <span className="ap-hero-tag">Established 2019</span>
+          <h1 className="ap-hero-title">Beyond the Resume. <em>Building Bharat.</em></h1>
+          <p className="ap-hero-quote">
+            "A recruiter never has to know your pin code. We built the room where a village candidate and a city employer meet as equals."
+          </p>
+        </div>
+        <div className="ap-hero-visual">
+          <div className="ap-hero-box ap-hero-box-1"></div>
+          <div className="ap-hero-box ap-hero-box-2"></div>
+          <div className="ap-hero-circle-outer">
+            <div className="ap-hero-circle-inner">
+              <span><span className="accent-orange">SKILL</span><br/>YUVA<br/><span className="accent-green">BHARAT</span></span>
             </div>
-            <div className="a-mission-grid">
-              <h1 className="a-headline">
-                Built to close the gap between <em>Bharat's youth</em> and Bharat's employers.
-              </h1>
-              <p className="a-body">
-                <strong>Skill Yuva Bharat</strong> exists because the hardest part of getting hired was 
-                never a lack of skill — it was never being in the same room as someone hiring. 
-                We organise large-scale job fairs across India that bring employers and job-seekers 
-                face to face, <strong>at zero cost</strong>.
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Founder Section */}
+      <section className="fs-wrap">
+        <div className="fs-card">
+          <div className="fs-diagonal"></div>
+
+          <div className="fs-body">
+            <div className="fs-photo">
+              <img src="/images/founder1.jpeg" alt="Founder" />
+            </div>
+            <div>
+              <span className="fs-tag">Founder & CEO</span>
+              <h2 className="fs-name">Name Here</h2>
+              <p className="fs-date">Established 2019</p>
+              <p className="fs-para">
+                A short introduction paragraph about the founder goes here — their background, what led them to start Skill Yuva Bharat, and the mission that drives them today.
+              </p>
+              <p className="fs-quote">
+                "Skill was never the problem in India.<br/>Access was."
+              </p>
+              <p className="fs-para">
+                A closing paragraph about their vision for the company, the scale of impact so far, and what's next for the platform and the youth it serves.
               </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* --- Roadmap Section --- */}
-        <section className="a-journey-section">
-          <div className="a-j-head">
-            <h2 className="a-j-title">Our <em>Roadmap</em> across India</h2>
+      {/* 3. Event Gallery Section */}
+      <section className="eg-wrap">
+        <div className="eg-grid">
+          <div>
+            <span className="eg-tag">Moments that matter</span>
+            <h2 className="eg-title">Every fair tells <em>a story</em>.</h2>
+            <p className="eg-text">
+              From packed convention halls to the first handshake between a candidate and a recruiter, these are the moments that define Skill Yuva Bharat's fairs across the country.
+            </p>
           </div>
 
-          <div className="a-road">
-            <div className="a-road-line" />
-            {JOURNEY.map((stop, i) => {
-              const isLeft = i % 2 === 0;
-              const accent = isLeft ? "#1A7A2E" : "#E8650A";
-              const accentBg = isLeft ? "rgba(26,122,46,.1)" : "rgba(232,101,10,.1)";
+          <div className="eg-stack">
+            {visible.map((img, i) => (
+              <div key={img} className={`eg-card eg-card-${i}`}>
+                <img src={img} alt="" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              return (
-                <div key={i} className={`a-stop ${isLeft ? 'a-stop-left' : 'a-stop-right'}`}
-                  style={{ '--accent': accent, '--accent-bg': accentBg }}>
-                  
-                  {/* Years and Center Marker */}
-                  <div className="a-stop-marker">
-                    <span className="a-stop-year">{stop.year}</span>
-                    <div className="a-stop-pin" />
-                  </div>
+      {/* 4. The Vision Section */}
+      <section className="ap-vision">
+        <div className="ap-vision-grid">
+          <div className="ap-stat-highlight">
+            <span className="ap-stat-num">1.2M+</span>
+            <span className="ap-stat-label">Lives Touched Nationwide</span>
+            <p style={{ marginTop: '20px', color: '#666' }}>We measure success not in registrations, but in the number of first-generation earners we help create.</p>
+          </div>
+          <div className="ap-vision-text">
+            <h2>The "Skill Yuva" Philosophy</h2>
+            <p>
+              In the heart of every district in India lies a powerhouse of potential. Yet, for decades, this talent remained hidden behind digital barriers and expensive recruitment agencies.
+            </p>
+            <p>
+              <strong>Skill Yuva Bharat</strong> was founded to dismantle these walls. By creating a physical, high-energy environment where recruiters meet candidates face-to-face, we remove the bias of the algorithm and the cost of the agent.
+            </p>
+          </div>
+        </div>
+      </section>
 
-                  {/* The Card */}
-                  <div className="a-stop-card">
-                    <div className="a-stop-icon">
-                      <StopIcon type={stop.icon} />
-                    </div>
-                    <span className="a-stop-tag">{stop.tag}</span>
-                    <h3 className="a-stop-title">{stop.title}</h3>
-                    <p className="a-stop-text">{stop.text}</p>
-                  </div>
+      {/* 5. The Pillars Section */}
+      <section className="ap-pillars">
+        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '32px', fontWeight: 900 }}>What we stand for</h2>
+          <p style={{ color: '#666' }}>Our work is guided by three non-negotiable principles that ensure every job fair is a win for Bharat.</p>
+        </div>
+        <div className="ap-pillar-grid">
+          {PILLARS.map((p, i) => (
+            <div key={i} className="ap-pillar-card" style={{ '--accent': p.color }}>
+              <div className="ap-pillar-icon">{p.icon}</div>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-                  {/* External Floating Side Stats */}
-                  <div className="a-stop-stat">
-                    <span className="a-stat-num">{stop.stat}</span>
-                    <span className="a-stat-lab">{stop.statLabel}</span>
-                  </div>
+      {/* 6. Impact Numbers Section */}
+      <section className="ap-impact">
+        <div className="ap-impact-grid">
+          <div className="ap-impact-item"><h4>28+</h4><p>States Covered</p></div>
+          <div className="ap-impact-item"><h4>800+</h4><p>Partner Companies</p></div>
+          <div className="ap-impact-item"><h4>100K+</h4><p>Placements Made</p></div>
+          <div className="ap-impact-item"><h4>0</h4><p>Cost to Candidates</p></div>
+        </div>
+      </section>
+
+      {/* 7. Partners Section */}
+      <section className="pt-wrap">
+        <div className="pt-inner">
+          <span className="pt-tag">Backed by</span>
+          <h2>Trusted by the institutions building Bharat</h2>
+        </div>
+
+        <div className="pt-orbit-wrap">
+          <div className="pt-ring"></div>
+          <div className="pt-hub">
+            <span style={{ color: "#E8650A" }}>SKILL</span>
+            <span>YUVA</span>
+            <span style={{ color: "#3FCB6B" }}>BHARAT</span>
+          </div>
+          <div className="pt-orbit">
+            {[
+              { short: 'NSDC', angle: 0, color: '#E8650A', logo: '/images/nsdc.png' },
+              { short: 'CII', angle: 72, color: '#1A7A2E', logo: '/images/cii.png' },
+              { short: 'ASDC', angle: 144, color: '#111', logo: '/images/asdc.png' },
+              { short: 'PWD', angle: 216, color: '#E8650A', logo: '/images/pwd.png' },
+              { short: 'NCS', angle: 288, color: '#1A7A2E', logo: '/images/ncs.png' }
+            ].map((s) => (
+              <div key={s.short} className="pt-sat" style={{ transform: `rotate(${s.angle}deg) translate(200px) rotate(-${s.angle}deg)` }}>
+                <div className="pt-sat-inner" style={{ '--c': s.color }}>
+                  <img src={s.logo} alt={s.short} />
+                  <span>{s.short}</span>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
-        </section>
-      </div>
-    </>
+        </div>
+
+        <p className="pt-caption">
+          We work with <strong>NSDC</strong>, <strong>CII</strong>, <strong>ASDC</strong>, <strong>PWD</strong> inclusion programs, and <strong>NCS</strong> to keep every fair credible, accessible, and connected to real employers.
+        </p>
+      </section>
+
+      {/* 8. Call to Action */}
+      <section className="ap-cta">
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h2>Be part of the next <br/><em>hiring revolution</em>.</h2>
+          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
+            <a href="/jobfair" className="ap-cta-btn" style={{ background: 'transparent', border: '2px solid #111', color: '#111' }}>Find a Job Fair</a>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

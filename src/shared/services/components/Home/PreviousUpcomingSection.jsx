@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -299,9 +300,9 @@ export default function PreviousUpcomingSection() {
           </div>
 
           <div className="jf-cta">
-            <a href="/jobfair" className="jf-viewall">
+            <Link to="/jobfair" className="jf-viewall">
               View All Job Fairs <ArrowRight size={15} />
-            </a>
+            </Link>
           </div>
         </div>
       </section>

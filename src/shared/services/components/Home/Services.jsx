@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Cog } from 'lucide-react';
 
 const services = [
   {
@@ -62,6 +64,72 @@ export default function Services() {
           flex-direction: column;
           align-items: center;
           font-family: 'Raleway', sans-serif;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .sv-gear-wrap {
+          position: absolute;
+          pointer-events: none;
+          z-index: 0;
+          color: #111;
+        }
+        .sv-gear-tl {
+          top: 24px;
+          left: 24px;
+        }
+        .sv-gear-tl .sv-gear-big {
+          width: 200px;
+          height: 200px;
+          opacity: 0.14;
+          animation: sv-gear-spin 30s linear infinite;
+        }
+        .sv-gear-tl .sv-gear-small {
+          width: 100px;
+          height: 100px;
+          opacity: 0.17;
+          position: absolute;
+          top: 150px;
+          left: 165px;
+          animation: sv-gear-spin-rev 22s linear infinite;
+        }
+
+        .sv-gear-br {
+          bottom: 24px;
+          right: 24px;
+        }
+        .sv-gear-br .sv-gear-big {
+          width: 220px;
+          height: 220px;
+          opacity: 0.14;
+          animation: sv-gear-spin-rev 34s linear infinite;
+        }
+        .sv-gear-br .sv-gear-small {
+          width: 110px;
+          height: 110px;
+          opacity: 0.17;
+          position: absolute;
+          bottom: 170px;
+          right: 175px;
+          animation: sv-gear-spin 24s linear infinite;
+        }
+
+        @keyframes sv-gear-spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes sv-gear-spin-rev {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(-360deg); }
+        }
+
+        .sv-wrap > *:not(.sv-gear-wrap) {
+          position: relative;
+          z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+          .sv-gear-wrap { display: none; }
         }
 
         .sv-eyebrow {
@@ -115,15 +183,27 @@ export default function Services() {
           width: 100%;
         }
 
+        /* --- Staggered entrance --- */
         .sv-card {
           background: #fff;
-          border: 1px solid rgba(0,0,0,0.06);
+          border: 1px solid rgba(0,0,0,0.14);
           border-radius: 12px;
           padding: 24px;
           box-shadow: 0 4px 20px rgba(0,0,0,0.02);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
           position: relative;
           overflow: hidden;
+          opacity: 0;
+          animation: sv-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .sv-card:nth-child(1) { animation-delay: 0.1s; }
+        .sv-card:nth-child(2) { animation-delay: 0.4s; }
+        .sv-card:nth-child(3) { animation-delay: 0.7s; }
+        .sv-card:nth-child(4) { animation-delay: 1.0s; }
+
+        @keyframes sv-rise {
+          from { opacity: 0; transform: translateY(60px) scale(0.94); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .sv-card:hover {
@@ -141,6 +221,32 @@ export default function Services() {
         .sv-card--orange::after { background: #E8650A; }
         .sv-card--green::after { background: #1A7A2E; }
 
+        /* --- Badge with rotating dashed ring + glow pulse --- */
+        .sv-badge-wrap {
+          position: relative;
+          width: 64px;
+          height: 64px;
+          margin-bottom: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .sv-ring {
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          border: 2.5px dashed rgba(0,0,0,0.25);
+          animation: sv-spin 6s linear infinite;
+        }
+        .sv-badge-wrap--orange .sv-ring { border-color: #E8650A; }
+        .sv-badge-wrap--green .sv-ring { border-color: #1A7A2E; }
+
+        @keyframes sv-spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+
         .sv-badge {
           width: 40px;
           height: 40px;
@@ -148,10 +254,28 @@ export default function Services() {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 16px;
+          position: relative;
+          z-index: 1;
         }
-        .sv-badge--orange { background: rgba(232,101,10,0.08); color: #E8650A; }
-        .sv-badge--green { background: rgba(26,122,46,0.08); color: #1A7A2E; }
+        .sv-badge--orange {
+          background: rgba(232,101,10,0.08);
+          color: #E8650A;
+          animation: sv-pulse-orange 2s ease-in-out infinite;
+        }
+        .sv-badge--green {
+          background: rgba(26,122,46,0.08);
+          color: #1A7A2E;
+          animation: sv-pulse-green 2s ease-in-out infinite;
+        }
+
+        @keyframes sv-pulse-orange {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(232,101,10,0.45); }
+          50% { box-shadow: 0 0 0 14px rgba(232,101,10,0); }
+        }
+        @keyframes sv-pulse-green {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(26,122,46,0.45); }
+          50% { box-shadow: 0 0 0 14px rgba(26,122,46,0); }
+        }
 
         .sv-title {
           font-size: 17px;
@@ -183,12 +307,32 @@ export default function Services() {
         }
         .sv-cta:hover { background: #E8650A; }
 
+        /* --- CTA arrow micro-bounce --- */
+        .sv-cta-arrow {
+          display: inline-flex;
+          animation: sv-arrow-bounce 1s ease-in-out infinite;
+        }
+        @keyframes sv-arrow-bounce {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(8px); }
+        }
+
         @media (max-width: 768px) {
           .sv-grid { grid-template-columns: 1fr; }
           .sv-heading { font-size: 26px; }
           .sv-wrap { padding: 60px 20px; }
         }
       `}</style>
+
+      <div className="sv-gear-wrap sv-gear-tl">
+        <Cog className="sv-gear-big" strokeWidth={1.5} />
+        <Cog className="sv-gear-small" strokeWidth={1.5} />
+      </div>
+
+      <div className="sv-gear-wrap sv-gear-br">
+        <Cog className="sv-gear-big" strokeWidth={1.5} />
+        <Cog className="sv-gear-small" strokeWidth={1.5} />
+      </div>
 
       <div className="sv-eyebrow">
         <div className="sv-eyebrow-line" />
@@ -207,19 +351,24 @@ export default function Services() {
       <div className="sv-grid">
         {services.map((s) => (
           <div className={`sv-card sv-card--${s.accent}`} key={s.title}>
-            <div className={`sv-badge sv-badge--${s.accent}`}>{s.icon}</div>
+            <div className={`sv-badge-wrap sv-badge-wrap--${s.accent}`}>
+              <div className="sv-ring" />
+              <div className={`sv-badge sv-badge--${s.accent}`}>{s.icon}</div>
+            </div>
             <h3 className="sv-title">{s.title}</h3>
             <p className="sv-text">{s.text}</p>
           </div>
         ))}
       </div>
 
-      <a href="/services" className="sv-cta">
+      <Link to="/services" className="sv-cta">
         Explore all services
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-          <path d="M5 12h14M13 5l7 7-7 7" />
-        </svg>
-      </a>
+        <span className="sv-cta-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </span>
+      </Link>
     </section>
   );
 }

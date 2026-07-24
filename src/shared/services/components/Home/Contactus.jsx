@@ -19,6 +19,68 @@ export default function Contactus() {
           background: #F8F4EF;
           padding: 80px 24px;
           color: #111;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .cu-deco-wrap {
+          position: absolute;
+          pointer-events: none;
+          z-index: 0;
+          color: #111;
+        }
+        .cu-deco-tl {
+          top: 40px;
+          left: 40px;
+        }
+        .cu-deco-tl .cu-deco-big {
+          width: 150px;
+          height: 150px;
+          opacity: 0.1;
+          animation: cu-deco-float 6s ease-in-out infinite;
+        }
+        .cu-deco-tl .cu-deco-small {
+          width: 60px;
+          height: 60px;
+          opacity: 0.15;
+          position: absolute;
+          top: 120px;
+          left: 130px;
+          animation: cu-deco-float 5s ease-in-out infinite 1s;
+        }
+
+        .cu-deco-br {
+          bottom: 40px;
+          right: 40px;
+        }
+        .cu-deco-br .cu-deco-big {
+          width: 160px;
+          height: 160px;
+          opacity: 0.1;
+          animation: cu-deco-float 7s ease-in-out infinite .5s;
+        }
+        .cu-deco-br .cu-deco-small {
+          width: 56px;
+          height: 56px;
+          opacity: 0.15;
+          position: absolute;
+          bottom: 130px;
+          right: 145px;
+          animation: cu-deco-float 5.5s ease-in-out infinite 1.5s;
+        }
+
+        @keyframes cu-deco-float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-14px); }
+        }
+
+        .cu-wrap > *:not(.cu-deco-wrap) {
+          position: relative;
+          z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+          .cu-deco-wrap { display: none; }
         }
 
         .cu-container {
@@ -56,12 +118,44 @@ export default function Contactus() {
           color: #666;
           text-align: center;
           max-width: 500px;
-          margin: 0 auto 60px;
+          margin: 0 auto 24px;
           line-height: 1.6;
+        }
+
+        /* --- NEW: Typing effect line --- */
+        .cu-typing-wrap {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 56px;
+        }
+        .cu-typing-text {
+          position: relative;
+          display: inline-block;
+          font-family: 'Lora', serif;
+          font-style: italic;
+          font-size: 14px;
+          color: #1A7A2E;
+          white-space: nowrap;
+          overflow: hidden;
+          border-right: 2px solid #1A7A2E;
+          animation:
+            cu-type 6s steps(34, end) infinite,
+            cu-blink 0.7s step-end infinite;
+        }
+        @keyframes cu-type {
+          0%   { width: 0; }
+          35%  { width: 34ch; }
+          75%  { width: 34ch; }
+          100% { width: 0; }
+        }
+        @keyframes cu-blink {
+          0%, 100% { border-color: #1A7A2E; }
+          50% { border-color: transparent; }
         }
 
         /* --- Grid Layout --- */
         .cu-grid {
+          position: relative;
           display: grid;
           grid-template-columns: 1fr 1.3fr;
           gap: 40px;
@@ -79,6 +173,8 @@ export default function Contactus() {
           display: flex;
           gap: 16px;
           transition: transform 0.3s ease;
+          position: relative;
+          z-index: 1;
         }
         .cu-info-card:nth-child(2) { border-left-color: #E8650A; } /* Brand Orange */
         .cu-info-card:nth-child(3) { border-left-color: #111; }
@@ -101,7 +197,13 @@ export default function Contactus() {
         .cu-info-content p { font-size: 13.5px; color: #666; line-height: 1.5; margin: 0; }
 
         /* --- Form Styling --- */
+        .cu-form-col {
+          position: relative;
+        }
+
         .cu-form-box {
+          position: relative;
+          z-index: 1;
           background: #fff;
           border-radius: 16px;
           padding: 32px;
@@ -165,6 +267,16 @@ export default function Contactus() {
         }
       `}</style>
 
+      <div className="cu-deco-wrap cu-deco-tl">
+        <Mail className="cu-deco-big" strokeWidth={1.2} />
+        <MessageSquare className="cu-deco-small" strokeWidth={1.2} />
+      </div>
+
+      <div className="cu-deco-wrap cu-deco-br">
+        <Phone className="cu-deco-big" strokeWidth={1.2} />
+        <Send className="cu-deco-small" strokeWidth={1.2} />
+      </div>
+
       <div className="cu-container">
         {/* Hero Section */}
         <div className="cu-eyebrow">
@@ -176,6 +288,11 @@ export default function Contactus() {
         <p className="cu-sub">
           Have questions about our job fairs or skill training? Our team is here to help you navigate your career journey.
         </p>
+
+        {/* Typing effect line */}
+        <div className="cu-typing-wrap">
+          <span className="cu-typing-text">We usually reply within a few hours</span>
+        </div>
 
         <div className="cu-grid">
           {/* Contact Information */}

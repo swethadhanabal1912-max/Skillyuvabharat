@@ -255,8 +255,8 @@ export default function ServicesPage() {
       <section className="hero">
         <div className="container">
           <span style={{ fontSize: '11px', fontWeight: 800, color: '#1A7A2E', letterSpacing: '2px' }}>OUR CAPABILITIES</span>
-          <h1 style={{ fontSize: '48px', fontWeight: 900, margin: '15px 0' }}>Everything you need for <span style={{ color: '#E8650A', fontStyle: 'italic', fontFamily: 'Lora' }}>Bulk Hiring.</span></h1>
-          <p style={{ maxWidth: '600px', margin: '0 auto', color: '#666' }}>We build the physical and operational bridge between Bharat's youth and the nation's biggest employers.</p>
+          <h1 style={{ fontSize: '48px', fontWeight: 900, margin: '15px 0' }}>Hiring at scale, without the <span style={{ color: '#E8650A', fontStyle: 'italic', fontFamily: 'Lora' }}>chaos.</span></h1>
+          <p style={{ maxWidth: '600px', margin: '0 auto', color: '#666' }}>Whether you're hiring 50 people or 5,000, we run the fair, source the candidates, and manage the room.</p>
         </div>
         <svg className="hero-curve" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
           <path d="M0,0 C300,90 900,90 1200,0 L1200,90 L0,90 Z" fill="#F8F4EF" />

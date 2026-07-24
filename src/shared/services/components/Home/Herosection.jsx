@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Factory, Cpu, HeartPulse, Truck, Landmark, HardHat, ShoppingBag, ConciergeBell, Car } from "lucide-react";
 
 const SECTORS = ["Manufacturing", "IT & Tech", "Healthcare", "Logistics", "Banking", "Construction", "Retail", "Hospitality", "Automotive"];
@@ -117,21 +118,21 @@ export default function HeroSection() {
                   <feDisplacementMap in="SourceGraphic" in2="hTurb" scale="16" xChannelSelector="R" yChannelSelector="G"/>
                 </filter>
               </defs>
-              <text className="h-bgw-base" x="50%" y="62%" textAnchor="middle" fontWeight="900" letterSpacing="-6" fontSize="230" fill="rgba(0,0,0,.04)">BHARAT</text>
-              <text className="h-bgw-sweep" x="50%" y="62%" textAnchor="middle" fontWeight="900" letterSpacing="-6" fontSize="230" fill="url(#hFlagGrad)" opacity="0.24" filter="url(#hFlagWave)">BHARAT</text>
+              <text className="h-bgw-base" x="50%" y="63%" textAnchor="middle" fontWeight="900" letterSpacing="-9" fontSize="100" fill="rgba(0,0,0,.04)">SKILL YUVA BHARAT</text>
+              <text className="h-bgw-sweep" x="50%" y="63%" textAnchor="middle" fontWeight="900" letterSpacing="-9" fontSize="100" fill="url(#hFlagGrad)" opacity="0.24" filter="url(#hFlagWave)">SKILL YUVA BHARAT</text>
             </svg>
           </div>
 
           <div className="h-ey ha1"></div>
           <div className="h-hl ha2">
-            <span className="h-hl-row"><span className="h-sans">We make</span><span className="h-serif"> employment</span></span>
-            <span className="h-hl-row"><span className="h-sans">real for</span><span className="h-serif-gr"> every Indian.</span></span>
+            <span className="h-hl-row"><span className="h-sans">One fair.</span></span>
+            <span className="h-hl-row"><span className="h-sans">Thousands of</span><span className="h-serif-gr"> first jobs.</span></span>
           </div>
           <div className="h-div ha3"><div className="h-dline"/><div className="h-dline"/></div>
-          <p className="h-sub ha4"><strong>Skill Yuva Bharat</strong> organises large-scale job fairs across India, connecting unemployed youth directly with employers. Zero cost. Zero barriers. Just careers.</p>
+          <p className="h-sub ha4"><strong>Skill Yuva Bharat</strong> organises India's largest job fairs, where first-generation earners meet real employers, face-to-face. Zero cost. Zero middlemen.</p>
           <div className="h-ctas ha5">
-            <a href="#about" className="h-ca">Who we are <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
-            <a href="#fairs" className="h-cb">Our job fairs</a>
+            <Link to="/about" className="h-ca">Who we are <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>
+            <Link to="/jobfair" className="h-cb">Our job fairs</Link>
           </div>
           <div className="h-stats ha6">
             <div className="h-st"><span className="h-sv" style={{color:"#E8650A"}}>1.2L+</span><span className="h-sl">Youth</span></div>
