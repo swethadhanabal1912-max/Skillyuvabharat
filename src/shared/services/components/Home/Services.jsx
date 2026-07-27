@@ -221,7 +221,7 @@ export default function Services() {
         .sv-card--orange::after { background: #E8650A; }
         .sv-card--green::after { background: #1A7A2E; }
 
-        /* --- Badge with rotating dashed ring + glow pulse --- */
+        /* --- Badge with rotating dashed ring --- */
         .sv-badge-wrap {
           position: relative;
           width: 64px;
@@ -260,21 +260,10 @@ export default function Services() {
         .sv-badge--orange {
           background: rgba(232,101,10,0.08);
           color: #E8650A;
-          animation: sv-pulse-orange 2s ease-in-out infinite;
         }
         .sv-badge--green {
           background: rgba(26,122,46,0.08);
           color: #1A7A2E;
-          animation: sv-pulse-green 2s ease-in-out infinite;
-        }
-
-        @keyframes sv-pulse-orange {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(232,101,10,0.45); }
-          50% { box-shadow: 0 0 0 14px rgba(232,101,10,0); }
-        }
-        @keyframes sv-pulse-green {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(26,122,46,0.45); }
-          50% { box-shadow: 0 0 0 14px rgba(26,122,46,0); }
         }
 
         .sv-title {

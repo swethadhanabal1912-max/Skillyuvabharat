@@ -24,31 +24,31 @@ export default function HeroSection() {
         .h{font-family:'Raleway',sans-serif;background:#F8F4EF;width:100%;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;position:relative}
         @keyframes hld{0%,100%{opacity:1}50%{opacity:.2}}
         .h-ldot{width:6px;height:6px;border-radius:50%;background:#fff;animation:hld 1.6s ease-in-out infinite}
-        .h-hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 52px;position:relative;text-align:center;overflow:hidden}
+        .h-hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 52px 28px;position:relative;text-align:center;overflow:hidden}
 
         .h-glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
         .h-glow-1{width:340px;height:340px;top:20px;left:20px;background:radial-gradient(circle,rgba(255,153,51,.28) 0%,rgba(255,153,51,.12) 40%,transparent 70%);animation:hglowpulse 8s ease-in-out infinite}
         .h-glow-2{width:360px;height:360px;bottom:20px;right:20px;background:radial-gradient(circle,rgba(19,136,8,.26) 0%,rgba(19,136,8,.11) 40%,transparent 70%);animation:hglowpulse 8s ease-in-out 3s infinite}
         @keyframes hglowpulse{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.75;transform:scale(1.08)}}
 
-        .h-bgw-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(1400px,94vw);pointer-events:none;user-select:none;z-index:0}
+        .h-bgw-wrap{position:relative;width:min(1200px,96vw);margin:0px auto 6px;pointer-events:none;user-select:none;z-index:1}
         .h-bgw-svg{width:100%;height:auto;display:block}
         .h-bgw-base{font-family:'Raleway',sans-serif}
         .h-bgw-sweep{font-family:'Raleway',sans-serif;mix-blend-mode:normal}
 
-        .h-ey{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+        .h-ey{display:flex;align-items:center;gap:14px;margin-bottom:16px}
         .h-ey-line{height:1px;width:48px;background:rgba(0,0,0,.2)}
         .h-ey-txt{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(0,0,0,.55)}
-        .h-hl{max-width:820px;margin-bottom:24px;position:relative;z-index:1}
-        .h-hl-row{display:block;line-height:1.02}
-        .h-sans{font-family:'Raleway',sans-serif;font-size:clamp(36px,7.5vw,92px);font-weight:900;letter-spacing:-2px;color:#111;text-transform:uppercase}
-        .h-serif{font-family:'Lora',serif;font-size:clamp(40px,8vw,100px);font-weight:400;font-style:italic;letter-spacing:-.5px;color:#E8650A}
-        .h-serif-gr{font-family:'Lora',serif;font-size:clamp(40px,8vw,100px);font-weight:600;font-style:italic;letter-spacing:-.5px;color:#1A7A2E}
-        .h-div{display:flex;align-items:center;gap:16px;margin-bottom:24px;position:relative;z-index:1}
+        .h-hl{max-width:900px;margin-bottom:6px;position:relative;z-index:1}
+        .h-hl-row{display:block;line-height:1.05}
+        .h-sans{font-family:'Raleway',sans-serif;font-size:clamp(36px,7.2vw,88px);font-weight:900;letter-spacing:-2px;color:#111;text-transform:uppercase}
+        .h-serif{font-family:'Lora',serif;font-size:clamp(40px,7.8vw,96px);font-weight:400;font-style:italic;letter-spacing:-.5px;color:#E8650A}
+        .h-serif-gr{font-family:'Lora',serif;font-size:clamp(40px,7.8vw,96px);font-weight:600;font-style:italic;letter-spacing:-.5px;color:#1A7A2E}
+        .h-div{display:flex;align-items:center;gap:16px;margin-bottom:6px;position:relative;z-index:1}
         .h-dline{flex:1;height:1px;background:rgba(0,0,0,.1);max-width:140px}
-        .h-sub{font-size:16px;font-weight:400;color:rgba(0,0,0,.82);line-height:1.78;max-width:480px;margin-bottom:36px;position:relative;z-index:1}
+        .h-sub{font-size:14.5px;font-weight:400;color:rgba(0,0,0,.82);line-height:1.55;max-width:480px;margin-bottom:20px;position:relative;z-index:1}
         .h-sub strong{font-weight:700;color:#111}
-        .h-ctas{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin-bottom:40px;position:relative;z-index:1}
+        .h-ctas{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin-bottom:20px;position:relative;z-index:1}
         .h-ca{font-size:13px;font-weight:700;letter-spacing:.04em;color:#fff;background:#111;padding:14px 32px;border-radius:99px;text-decoration:none;display:flex;align-items:center;gap:8px;transition:background .18s}
         .h-ca:hover{background:#E8650A}
         .h-cb{font-size:13px;font-weight:600;color:rgba(0,0,0,.5);padding:14px 22px;border-radius:99px;text-decoration:none;border:1.5px solid rgba(0,0,0,.14);transition:all .18s}
@@ -87,15 +87,8 @@ export default function HeroSection() {
         .h-bgw-mobile-svg{width:100%;height:auto;display:block}
 
         @media(max-width:760px){
-          .h-hero{padding:48px 24px}
-          .h-bgw-wrap{display:none}
-          .h-bgw-mobile{
-            display:block;
-            width:82vw;
-            margin:0 auto 24px;
-            user-select:none;
-            pointer-events:none;
-          }
+          .h-hero{padding:32px 24px 24px}
+          .h-bgw-wrap{width:98vw;margin:0 auto 8px}
           .h-stats{width:100%;border-radius:14px}
           .h-st{flex:1 1 33%;padding:14px 10px}
           .h-sv{font-size:19px}
@@ -111,8 +104,16 @@ export default function HeroSection() {
         <div className="h-hero">
           <div className="h-glow h-glow-1"/>
           <div className="h-glow h-glow-2"/>
-          <div className="h-bgw-wrap">
-            <svg className="h-bgw-svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+
+          <div className="h-ey ha1"></div>
+          <div className="h-hl ha2">
+            <span className="h-hl-row"><span className="h-sans">One fair.</span></span>
+            <span className="h-hl-row"><span className="h-sans">Thousands of</span></span>
+            <span className="h-hl-row"><span className="h-serif-gr">first jobs.</span></span>
+          </div>
+
+          <div className="h-bgw-wrap ha3">
+            <svg className="h-bgw-svg" viewBox="0 0 1400 260" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
               <defs>
                 <linearGradient id="hFlagGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#FF9933"/>
@@ -126,42 +127,16 @@ export default function HeroSection() {
                   <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="4" result="hTurb">
                     <animate attributeName="baseFrequency" dur="9s" values="0.012 0.05;0.017 0.06;0.012 0.05" repeatCount="indefinite"/>
                   </feTurbulence>
-                  <feDisplacementMap in="SourceGraphic" in2="hTurb" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+                  <feDisplacementMap in="SourceGraphic" in2="hTurb" scale="10" xChannelSelector="R" yChannelSelector="G"/>
                 </filter>
               </defs>
-              <text className="h-bgw-base" x="50%" y="63%" textAnchor="middle" fontWeight="900" letterSpacing="-9" fontSize="100" fill="rgba(0,0,0,.04)">SKILL YUVA BHARAT</text>
-              <text className="h-bgw-sweep" x="50%" y="63%" textAnchor="middle" fontWeight="900" letterSpacing="-9" fontSize="100" fill="url(#hFlagGrad)" opacity="0.24" filter="url(#hFlagWave)">SKILL YUVA BHARAT</text>
+              <text className="h-bgw-base" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-9" fontSize="160" fill="rgba(0,0,0,.05)">SKILL YUVA BHARAT</text>
+              <text className="h-bgw-sweep" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-9" fontSize="160" fill="url(#hFlagGrad)" opacity="0.4" filter="url(#hFlagWave)">SKILL YUVA BHARAT</text>
             </svg>
           </div>
 
-          <div className="h-ey ha1"></div>
-          <div className="h-hl ha2">
-            <span className="h-hl-row"><span className="h-sans">One fair.</span></span>
-            <span className="h-hl-row"><span className="h-sans">Thousands of</span><span className="h-serif-gr"> first jobs.</span></span>
-          </div>
           <div className="h-div ha3"><div className="h-dline"/><div className="h-dline"/></div>
-          <div className="h-bgw-mobile">
-            <svg className="h-bgw-mobile-svg" viewBox="0 0 800 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-              <defs>
-                <linearGradient id="hFlagGradM" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#FF9933"/>
-                  <stop offset="33%" stopColor="#FF9933"/>
-                  <stop offset="33%" stopColor="#FFFFFF"/>
-                  <stop offset="66%" stopColor="#FFFFFF"/>
-                  <stop offset="66%" stopColor="#138808"/>
-                  <stop offset="100%" stopColor="#138808"/>
-                </linearGradient>
-                <filter id="hFlagWaveM" x="-20%" y="-20%" width="140%" height="140%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="4" result="hTurbM">
-                    <animate attributeName="baseFrequency" dur="9s" values="0.012 0.05;0.017 0.06;0.012 0.05" repeatCount="indefinite"/>
-                  </feTurbulence>
-                  <feDisplacementMap in="SourceGraphic" in2="hTurbM" scale="10" xChannelSelector="R" yChannelSelector="G"/>
-                </filter>
-              </defs>
-              <text className="h-bgw-base" x="50%" y="65%" textAnchor="middle" fontWeight="900" letterSpacing="-3" fontSize="60" fill="rgba(0,0,0,.05)">SKILL YUVA BHARAT</text>
-              <text className="h-bgw-sweep" x="50%" y="65%" textAnchor="middle" fontWeight="900" letterSpacing="-3" fontSize="60" fill="url(#hFlagGradM)" opacity="0.28" filter="url(#hFlagWaveM)">SKILL YUVA BHARAT</text>
-            </svg>
-          </div>
+
           <p className="h-sub ha4"><strong>Skill Yuva Bharat</strong> organises India's largest job fairs, where first-generation earners meet real employers, face-to-face. Zero cost. Zero middlemen.</p>
           <div className="h-ctas ha5">
             <Link to="/about" className="h-ca">Who we are <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></Link>

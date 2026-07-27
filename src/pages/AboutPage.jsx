@@ -483,11 +483,11 @@ export default function AboutPage() {
 
           <div className="fs-body">
             <div className="fs-photo">
-              <img src="/images/founder1.jpeg" alt="Founder" />
+              <img src="/images/md.jpeg" alt="Founder" />
             </div>
             <div>
               <span className="fs-tag">Founder & CEO</span>
-              <h2 className="fs-name">Name Here</h2>
+              <h2 className="fs-name">Srinivasan N</h2>
               <p className="fs-date">Established 2019</p>
               <p className="fs-para">
                 A short introduction paragraph about the founder goes here — their background, what led them to start Skill Yuva Bharat, and the mission that drives them today.
@@ -588,10 +588,10 @@ export default function AboutPage() {
           <div className="pt-orbit">
             {[
               { short: 'NSDC', angle: 0, color: '#E8650A', logo: '/images/nsdc.png' },
-              { short: 'CII', angle: 72, color: '#1A7A2E', logo: '/images/cii.png' },
+              { short: 'CII', angle: 72, color: '#1A7A2E', logo: '/images/cii.jpg' },
               { short: 'ASDC', angle: 144, color: '#111', logo: '/images/asdc.png' },
               { short: 'PWD', angle: 216, color: '#E8650A', logo: '/images/pwd.png' },
-              { short: 'NCS', angle: 288, color: '#1A7A2E', logo: '/images/ncs.png' }
+              { short: 'NCS', angle: 288, color: '#1A7A2E', logo: '/images/ncs.jpg' }
             ].map((s) => (
               <div key={s.short} className="pt-sat" style={{ transform: `rotate(${s.angle}deg) translate(var(--orbit-r, 200px)) rotate(-${s.angle}deg)` }}>
                 <div className="pt-sat-inner" style={{ '--c': s.color }}>
