@@ -60,7 +60,7 @@ export default function HeroSection() {
         .h-sl{font-size:10px;font-weight:600;color:rgba(0,0,0,.38);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
 
         /* ---------- Bottom marquee bar (enlarged) ---------- */
-        .h-bot{display:flex;align-items:center;justify-content:space-between;padding:24px 52px;overflow:hidden;position:relative;z-index:1;background:#FFFFFF;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06)}
+        .h-bot{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 52px;overflow:hidden;position:relative;z-index:1;background:#FFFFFF;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06)}
         .h-blbl{font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#111;white-space:nowrap}
         .h-tape-wrap{overflow:hidden;flex:1;margin:0 40px}
         .h-tape{display:inline-flex;white-space:nowrap;animation:htape 26s linear infinite}
@@ -87,16 +87,17 @@ export default function HeroSection() {
         .h-bgw-mobile-svg{width:100%;height:auto;display:block}
 
         @media(max-width:760px){
-          .h-hero{padding:32px 24px 24px}
+          .h-hero{padding:100px 24px 24px}
           .h-bgw-wrap{width:98vw;margin:0 auto 8px}
+          .h-bgw-base,.h-bgw-sweep{font-size:62px!important;letter-spacing:-2px!important}
           .h-stats{width:100%;border-radius:14px}
           .h-st{flex:1 1 33%;padding:14px 10px}
           .h-sv{font-size:19px}
-          .h-bot{padding:18px 24px}
-          .h-blbl{font-size:11px}
+          .h-bot{padding:16px 20px;gap:14px}
+          .h-blbl{font-size:11px;flex-shrink:0}
           .h-ti{font-size:12.5px;padding:0 18px}
-          .h-ptag{font-size:11px;padding:6px 12px}
-          .h-tape-wrap{margin:0 20px}
+          .h-tape-wrap{margin:0}
+          .h-ptags{display:none}
         }
       `}</style>
 
@@ -113,7 +114,7 @@ export default function HeroSection() {
           </div>
 
           <div className="h-bgw-wrap ha3">
-            <svg className="h-bgw-svg" viewBox="0 0 1400 260" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <svg className="h-bgw-svg" viewBox="0 0 1300 260" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
               <defs>
                 <linearGradient id="hFlagGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#FF9933"/>
@@ -130,8 +131,8 @@ export default function HeroSection() {
                   <feDisplacementMap in="SourceGraphic" in2="hTurb" scale="10" xChannelSelector="R" yChannelSelector="G"/>
                 </filter>
               </defs>
-              <text className="h-bgw-base" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-9" fontSize="160" fill="rgba(0,0,0,.05)">SKILL YUVA BHARAT</text>
-              <text className="h-bgw-sweep" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-9" fontSize="160" fill="url(#hFlagGrad)" opacity="0.4" filter="url(#hFlagWave)">SKILL YUVA BHARAT</text>
+              <text className="h-bgw-base" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-7" fontSize="135" fill="rgba(0,0,0,.05)">SKILL YUVA BHARAT</text>
+              <text className="h-bgw-sweep" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-7" fontSize="135" fill="url(#hFlagGrad)" opacity="0.4" filter="url(#hFlagWave)">SKILL YUVA BHARAT</text>
             </svg>
           </div>
 
