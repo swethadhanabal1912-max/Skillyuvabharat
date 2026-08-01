@@ -56,6 +56,36 @@ const PARTNERS = [
   }
 ];
 
+// Leadership profiles
+const LEADERS = [
+  {
+    photo: "/images/founder.png",
+    tag: "Meet the Founder",
+    name: "Dr G Satheesh Reddy",
+    subtitle: "Former Secretary, Dept of Defence R&D & Chairman, DRDO",
+    accent: "#1A7A2E",
+    paraIntro:
+      "Dr G Satheesh Reddy is a defence and aerospace scientist with over four decades of experience in technology leadership. A graduate in Electronics & Communication Engineering from JNTU Anantapur, with an MS and PhD from JNTU Hyderabad, he joined the Defence Research and Development Laboratory in 1986 and went on to lead some of India's most significant national technology programmes.",
+    paraClose:
+      "He has held several senior positions in the Government of India, including Secretary, Department of Defence R&D, Chairman of DRDO, and Scientific Adviser to the Raksha Mantri. He currently serves as a Member of the National Security Advisory Board, Honorary Adviser (Cabinet Rank) to the Government of Andhra Pradesh, and President of the Aeronautical Society of India. At Skill Yuva Bharat, he brings this experience in building large-scale, mission-driven national systems to the goal of connecting India's youth with real employment opportunities.",
+    quoteType: "descriptive", // avoid inventing a fabricated first-person quote for a real public figure
+    quoteText: "A career defined by building indigenous capability at national scale — now channelled into building opportunity for India's youth."
+  },
+  {
+    photo: "/images/md.jpeg",
+    tag: "Meet the Co-Founder",
+    name: "Srinivasan N",
+    subtitle: "Co-Founder & CEO · Established 2019",
+    accent: "#E8650A",
+    paraIntro:
+      "A short introduction paragraph about the co-founder goes here — their background, what led them to start Skill Yuva Bharat, and the mission that drives them today.",
+    paraClose:
+      "A closing paragraph about their vision for the company, the scale of impact so far, and what's next for the platform and the youth it serves.",
+    quoteType: "quote",
+    quoteText: "Skill was never the problem in India. Access was."
+  }
+];
+
 export default function AboutPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -171,75 +201,116 @@ export default function AboutPage() {
         }
         .ap-hero-circle-inner span .accent-orange { color: #E8650A; }
         .ap-hero-circle-inner span .accent-green { color: #1A7A2E; }
+        .ap-hero-circle-logo {
+          width: 62%;
+          height: 62%;
+          object-fit: contain;
+        }
 
-        /* --- 2. Founder Section (editorial magazine style) --- */
+        /* --- 2. Leadership Section (editorial profile spread, no cards, no bg numerals) --- */
         .fs-wrap {
-          background: #F8F4EF;
-          padding: 100px 24px;
+          padding: 80px 0 10px;
         }
-        .fs-card {
+        .fs-section-head {
           max-width: 1100px;
-          margin: 0 auto;
+          margin: 0 auto 50px;
+          text-align: center;
+          padding: 0 24px;
+        }
+        .fs-section-head h2 {
+          font-size: 32px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 10px;
+        }
+        .fs-section-head p { color: #666; }
+
+        .fs-profile {
           position: relative;
-          background: #fff;
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+          padding: 56px 24px;
+          background: #FFFFFF;
         }
-        .fs-diagonal {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 45%;
-          height: 100%;
-          background: #EADFC9;
-          clip-path: polygon(35% 0, 100% 0, 100% 100%, 0% 100%);
-          z-index: 0;
-        }
+
         .fs-body {
           position: relative;
-          z-index: 2;
+          z-index: 1;
+          max-width: 1000px;
+          margin: 0 auto;
           display: grid;
-          grid-template-columns: 0.85fr 1.15fr;
-          gap: 40px;
+          grid-template-columns: 300px 1fr;
+          gap: 56px;
           align-items: center;
-          padding: 40px 48px 60px;
         }
+        .fs-profile-l .fs-body { grid-template-columns: 1fr 300px; }
+        .fs-profile-l .fs-photo-col { order: 2; }
+        .fs-profile-l .fs-text-col { order: 1; }
+
+        .fs-photo-col { position: relative; max-width: 300px; }
+        
         .fs-photo {
-          width: 100%;
+          position: relative;
+          z-index: 1;
           aspect-ratio: 3/4;
-          border-radius: 12px;
+          border-radius: 16px;
           overflow: hidden;
-          background: #ddd;
+          box-shadow: 0 16px 32px rgba(0,0,0,0.1);
         }
         .fs-photo img {
           width: 100%; height: 100%; object-fit: cover; display: block;
         }
+
         .fs-tag {
-          font-size: 13px; font-weight: 800; color: #1A7A2E; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; display: block;
+          font-size: 12.5px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 10px; display: block;
         }
         .fs-name {
-          font-family: 'Lora', serif;
-          font-size: clamp(28px, 3vw, 38px);
-          font-weight: 600;
+          font-family: 'Raleway', sans-serif;
+          font-size: clamp(26px, 3.2vw, 38px);
+          font-weight: 900;
+          letter-spacing: -1px;
           color: #111;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
+          line-height: 1.1;
         }
         .fs-date {
-          font-size: 12px; color: #999; margin-bottom: 24px;
+          font-size: 12.5px;
+          font-weight: 700;
+          color: var(--accent);
+          margin-bottom: 20px;
         }
         .fs-para {
-          font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 22px;
+          font-size: 14.5px; line-height: 1.8; color: #2A2A2A; margin-bottom: 18px;
         }
-        .fs-quote {
+
+        .fs-pullquote {
+          position: relative;
+          margin: 24px 0;
+          padding-left: 34px;
+        }
+        .fs-pullquote::before {
+          content: '“';
+          position: absolute;
+          left: -4px;
+          top: -22px;
+          font-family: 'Lora', serif;
+          font-size: 70px;
+          font-weight: 700;
+          color: var(--accent);
+          opacity: 0.35;
+          line-height: 1;
+        }
+        .fs-pullquote p {
           font-family: 'Lora', serif;
           font-style: italic;
-          font-size: 20px;
+          font-size: 17px;
           line-height: 1.6;
-          color: #E8650A;
-          text-align: center;
-          margin: 28px 0;
-          padding: 0 20px;
+          color: var(--accent);
+          font-weight: 500;
+          margin: 0;
+        }
+
+        @media (max-width: 900px) {
+          .fs-body, .fs-profile-l .fs-body { grid-template-columns: 1fr; gap: 28px; }
+          .fs-profile-l .fs-photo-col, .fs-profile-l .fs-text-col { order: initial; }
+          .fs-photo-col { max-width: 220px; margin: 0 auto; }
+          .fs-pullquote { padding-left: 26px; }
+          .fs-pullquote::before { font-size: 56px; top: -14px; }
         }
 
         /* --- 3. Event Gallery Section (fanned photo stack) --- */
@@ -430,8 +501,6 @@ export default function AboutPage() {
           .ap-impact-grid { grid-template-columns: 1fr 1fr; }
           .eg-stack { height: 340px; }
           .eg-card { width: 150px; height: 210px; }
-          .fs-body { grid-template-columns: 1fr; padding: 30px 24px 40px; }
-          .fs-diagonal { display: none; }
 
           .pt-wrap { overflow-x: hidden; }
           .pt-orbit-wrap {
@@ -470,37 +539,44 @@ export default function AboutPage() {
           <div className="ap-hero-box ap-hero-box-2"></div>
           <div className="ap-hero-circle-outer">
             <div className="ap-hero-circle-inner">
-              <span><span className="accent-orange">SKILL</span><br/>YUVA<br/><span className="accent-green">BHARAT</span></span>
+              <img src="/images/logo.png" alt="Skill Yuva Bharat" className="ap-hero-circle-logo" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Founder Section */}
+      {/* 2. Leadership Section (Founder + Co-Founder) */}
       <section className="fs-wrap">
-        <div className="fs-card">
-          <div className="fs-diagonal"></div>
+        <div className="fs-section-head">
+          <h2>Our Leadership</h2>
+          <p>The people behind Skill Yuva Bharat's mission.</p>
+        </div>
 
-          <div className="fs-body">
-            <div className="fs-photo">
-              <img src="/images/md.jpeg" alt="Founder" />
-            </div>
-            <div>
-              <span className="fs-tag">Founder & CEO</span>
-              <h2 className="fs-name">Srinivasan N</h2>
-              <p className="fs-date">Established 2019</p>
-              <p className="fs-para">
-                A short introduction paragraph about the founder goes here — their background, what led them to start Skill Yuva Bharat, and the mission that drives them today.
-              </p>
-              <p className="fs-quote">
-                "Skill was never the problem in India.<br/>Access was."
-              </p>
-              <p className="fs-para">
-                A closing paragraph about their vision for the company, the scale of impact so far, and what's next for the platform and the youth it serves.
-              </p>
+        {LEADERS.map((leader, i) => (
+          <div
+            key={leader.name}
+            className={`fs-profile ${i % 2 === 0 ? 'fs-profile-r' : 'fs-profile-l'}`}
+            style={{ '--accent': leader.accent }}
+          >
+            <div className="fs-body">
+              <div className="fs-photo-col">
+                <div className="fs-photo">
+                  <img src={leader.photo} alt={leader.name} />
+                </div>
+              </div>
+              <div className="fs-text-col">
+                <span className="fs-tag">{leader.tag}</span>
+                <h2 className="fs-name">{leader.name}</h2>
+                <p className="fs-date">{leader.subtitle}</p>
+                <p className="fs-para">{leader.paraIntro}</p>
+                <div className="fs-pullquote">
+                  <p>{leader.quoteText}</p>
+                </div>
+                <p className="fs-para">{leader.paraClose}</p>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </section>
 
       {/* 3. Event Gallery Section */}
@@ -590,7 +666,7 @@ export default function AboutPage() {
               { short: 'NSDC', angle: 0, color: '#E8650A', logo: '/images/nsdc.png' },
               { short: 'CII', angle: 72, color: '#1A7A2E', logo: '/images/cii.jpg' },
               { short: 'ASDC', angle: 144, color: '#111', logo: '/images/asdc.png' },
-              { short: 'PWD', angle: 216, color: '#E8650A', logo: '/images/pwd.png' },
+              { short: 'TNSkill', angle: 216, color: '#E8650A', logo: '/images/tnskill.jpg' },
               { short: 'NCS', angle: 288, color: '#1A7A2E', logo: '/images/ncs.jpg' }
             ].map((s) => (
               <div key={s.short} className="pt-sat" style={{ transform: `rotate(${s.angle}deg) translate(var(--orbit-r, 200px)) rotate(-${s.angle}deg)` }}>
@@ -604,7 +680,7 @@ export default function AboutPage() {
         </div>
 
         <p className="pt-caption">
-          We work with <strong>NSDC</strong>, <strong>CII</strong>, <strong>ASDC</strong>, <strong>PWD</strong> inclusion programs, and <strong>NCS</strong> to keep every fair credible, accessible, and connected to real employers.
+          We work with <strong>NSDC</strong>, <strong>CII</strong>, <strong>ASDC</strong>, <strong>TNSKILL</strong> inclusion programs, and <strong>NCS</strong> to keep every fair credible, accessible, and connected to real employers.
         </p>
       </section>
 

@@ -13,18 +13,19 @@ const SECTOR_ICONS = {
   "Hospitality": ConciergeBell,
   "Automotive": Car,
 };
-const PARTNERS = ["NSDC", "CII", "ASDC", "PWD", "NCS"];
+const PARTNERS = ["NSDC", "CII", "ASDC", "TNSKILL", "NCS"];
 
 export default function HeroSection() {
   return (
     <>
+    
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 
         .h{font-family:'Raleway',sans-serif;background:#F8F4EF;width:100%;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;position:relative}
         @keyframes hld{0%,100%{opacity:1}50%{opacity:.2}}
         .h-ldot{width:6px;height:6px;border-radius:50%;background:#fff;animation:hld 1.6s ease-in-out infinite}
-        .h-hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 52px 28px;position:relative;text-align:center;overflow:hidden}
+        .h-hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 52px 28px;position:relative;text-align:center;overflow:hidden}
 
         .h-glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
         .h-glow-1{width:340px;height:340px;top:20px;left:20px;background:radial-gradient(circle,rgba(255,153,51,.28) 0%,rgba(255,153,51,.12) 40%,transparent 70%);animation:hglowpulse 8s ease-in-out infinite}
@@ -88,8 +89,7 @@ export default function HeroSection() {
 
         @media(max-width:760px){
           .h-hero{padding:100px 24px 24px}
-          .h-bgw-wrap{width:98vw;margin:0 auto 8px}
-          .h-bgw-base,.h-bgw-sweep{font-size:62px!important;letter-spacing:-2px!important}
+          .h-bgw-wrap{width:100%;margin:0 auto 8px}
           .h-stats{width:100%;border-radius:14px}
           .h-st{flex:1 1 33%;padding:14px 10px}
           .h-sv{font-size:19px}
@@ -131,8 +131,8 @@ export default function HeroSection() {
                   <feDisplacementMap in="SourceGraphic" in2="hTurb" scale="10" xChannelSelector="R" yChannelSelector="G"/>
                 </filter>
               </defs>
-              <text className="h-bgw-base" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-7" fontSize="135" fill="rgba(0,0,0,.05)">SKILL YUVA BHARAT</text>
-              <text className="h-bgw-sweep" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-7" fontSize="135" fill="url(#hFlagGrad)" opacity="0.4" filter="url(#hFlagWave)">SKILL YUVA BHARAT</text>
+              <text className="h-bgw-base" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-7" fontSize="135" textLength="1250" lengthAdjust="spacingAndGlyphs" fill="rgba(0,0,0,.05)">SKILL YUVA BHARAT</text>
+              <text className="h-bgw-sweep" x="50%" y="60%" textAnchor="middle" fontWeight="900" letterSpacing="-7" fontSize="135" textLength="1250" lengthAdjust="spacingAndGlyphs" fill="url(#hFlagGrad)" opacity="0.4" filter="url(#hFlagWave)">SKILL YUVA BHARAT</text>
             </svg>
           </div>
 
