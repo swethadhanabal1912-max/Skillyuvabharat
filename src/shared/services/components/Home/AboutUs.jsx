@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import CountUpStat from '../../../utils/CountUpStat';
 
 const JOURNEY = [
   {
@@ -78,46 +79,6 @@ function StopIcon({ type }) {
     case "flag": return <svg {...common}><path d="M5 21V4h13l-3 4 3 4H5" /></svg>;
     default: return null;
   }
-}
-
-/** Animates a numeric-looking stat string from 0 up to its final value on mount. */
-function CountUpStat({ value, duration = 1400 }) {
-  const match = value.match(/^([\d.]+)(.*)$/);
-  const numeric = match ? parseFloat(match[1]) : null;
-  const suffix = match ? match[2] : "";
-  const isDecimal = match && match[1].includes(".");
-
-  const [display, setDisplay] = useState(numeric === null ? value : "0" + suffix);
-  const ref = useRef(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    if (numeric === null) return;
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const start = performance.now();
-          const tick = (now) => {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = numeric * eased;
-            setDisplay((isDecimal ? current.toFixed(1) : Math.round(current)) + suffix);
-            if (progress < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        }
-      },
-      { threshold: 0.4 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [numeric, suffix, duration, isDecimal]);
-
-  return <span ref={ref}>{display}</span>;
 }
 
 export default function AboutUs() {

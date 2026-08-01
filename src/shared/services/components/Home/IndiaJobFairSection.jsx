@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CalendarDays, MapPin, Users, Building2, Plane } from "lucide-react";
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
+import CountUpStat from "../../../utils/CountUpStat";
 
 const BASE_SIZE = 440;
 const BASE_PADDING = 100;
@@ -121,7 +122,14 @@ function useScrollActiveCity(cityNames) {
     };
   };
 
-  return { active: active, setRef: setRef };
+  const scrollToCity = function (name) {
+    const el = refs.current[name];
+    if (!el) return;
+    setActive(name);
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  return { active: active, setRef: setRef, scrollToCity: scrollToCity };
 }
 
 function useSectionSize(sectionRef) {
@@ -165,6 +173,7 @@ export default function IndiaJobFairSection() {
   const scrollState = useScrollActiveCity(cityNames);
   const active = scrollState.active;
   const setRef = scrollState.setRef;
+  const scrollToCity = scrollState.scrollToCity;
 
   const activeCity = CITIES.find(function (c) { return c.name === active; }) || CITIES[0];
 
@@ -291,9 +300,12 @@ export default function IndiaJobFairSection() {
                     {points && points.map(function (p) {
                       const isActive = p.name === active;
                       return (
-                        <div
+                        <button
+                          type="button"
                           key={p.name}
-                          className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1"
+                          onClick={function () { scrollToCity(p.name); }}
+                          aria-label={"Jump to " + p.name}
+                          className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 bg-transparent border-0 p-2 -m-2 cursor-pointer touch-manipulation"
                           style={{ left: p.x, top: p.y }}
                         >
                           <span className="relative flex items-center justify-center">
@@ -318,7 +330,7 @@ export default function IndiaJobFairSection() {
                           >
                             {p.name}
                           </span>
-                        </div>
+                        </button>
                       );
                     })}
                   </div>
@@ -358,13 +370,15 @@ export default function IndiaJobFairSection() {
                     data-city={city.name}
                     className="min-h-42.5 sm:min-h-55 flex items-center"
                   >
-                    <motion.div
+                    <motion.button
+                      type="button"
+                      onClick={function () { scrollToCity(city.name); }}
                       animate={{
                         opacity: isActive ? 1 : 0.4,
                         x: isActive ? 0 : -8,
                       }}
                       transition={{ duration: 0.3 }}
-                      className="w-full rounded-2xl p-5 sm:p-6"
+                      className="w-full text-left rounded-2xl p-5 sm:p-6 cursor-pointer border-0"
                       style={{
                         background: isActive ? "#FFFFFF" : "transparent",
                         borderLeft: "4px solid " + (isActive ? city.color : "rgba(0,0,0,.08)"),
@@ -383,7 +397,7 @@ export default function IndiaJobFairSection() {
                         <span className="text-2xl font-black" style={{ color: city.color }}>{city.fairs}</span>
                         <span className="text-xs font-normal" style={{ color: "rgba(0,0,0,.72)" }}>fairs run to date</span>
                       </div>
-                    </motion.div>
+                    </motion.button>
                   </div>
                 );
               })}
@@ -410,7 +424,9 @@ export default function IndiaJobFairSection() {
                   <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center" style={{ background: item.bg }}>
                     <Icon size={20} style={{ color: item.color }} />
                   </div>
-                  <h3 className="mt-2.5 sm:mt-3 text-base sm:text-xl font-black" style={{ color: item.color }}>{item.value}</h3>
+                  <h3 className="mt-2.5 sm:mt-3 text-base sm:text-xl font-black" style={{ color: item.color }}>
+                    <CountUpStat value={item.value} />
+                  </h3>
                   <p className="text-[11px] sm:text-xs font-normal mt-0.5 sm:mt-1" style={{ color: "rgba(0,0,0,.72)" }}>{item.label}</p>
                 </motion.div>
               );
