@@ -60,7 +60,7 @@ const PARTNERS = [
 const LEADERS = [
   {
     photo: "/images/founder.png",
-    tag: "Meet the Founder",
+    tag: "Meet the Chairman & Founder",
     name: "Dr G Satheesh Reddy",
     subtitle: "Former Secretary, Dept of Defence R&D & Chairman, DRDO",
     accent: "#1A7A2E",
